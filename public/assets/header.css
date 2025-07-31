@@ -1,0 +1,75 @@
+.container-fluid .navigation {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul {
+    display: flex;
+    gap: 40px;
+}
+
+li .inscription{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.inscription,
+.connexion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5170ff;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 5px 10px;
+    height: 25px;
+    border: none;
+   
+    cursor: pointer;
+}
+
+.connexion{
+    background-color: #5d8191 !important; 
+    margin-left: 50px;
+    
+}
+
+.inscription{
+    margin-left: 50px;
+}
+
+.navbar-nav {
+  gap: 0;
+}
+
+.navbar-nav > li {
+  padding: 0 20px;
+}
+
+.recherche input {
+    height: 25px;
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.recherche .icon-wrapper {
+    height: 25px;
+    padding: 0 6px;
+}
+
+.recherche .bi-search {
+    font-size: 12px;
+    line-height: 1;
+}
+
+
+body{
+    background-color: gray;
+}
+
+.logo {
+    width: 10vw;  /* prend 10% de la largeur de l’écran */
+    height: auto;
+}
