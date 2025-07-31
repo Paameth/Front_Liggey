@@ -1,0 +1,89 @@
+.container-fluid .navigation {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+ul {
+    display: flex;
+   
+}
+
+li .inscription{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.navbar-nav li{
+    font-size: 20px;
+}
+
+ul.navbar-nav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.inscription,
+.connexion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5170ff;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px;
+    height: 30px;
+    border: none;
+   
+    cursor: pointer;
+}
+
+.connexion{
+    background-color: #5d8191 !important; 
+    margin-left: 100px;
+   
+    
+}
+
+.inscription{
+    margin-left: 50px;
+}
+
+.navbar-nav {
+  gap: 0;
+}
+
+.navbar-nav > li {
+  padding: 0 20px;
+}
+
+.recherche input {
+    height: 40px;
+    padding: 2px 8px;
+    font-size: 20px;
+    margin-left: 0px;
+}
+
+.recherche .icon-wrapper {
+    height: 40px;
+    padding: 8px;
+    border-right: none;
+    margin-right: 0px;
+}
+
+.recherche .bi-search {
+    font-size: 12px;
+    line-height: 1;
+}
+
+
+body{
+    background-color: gray;
+}
+
+.logo {
+    width: 10vw;  /* prend 10% de la largeur de l’écran */
+    height: auto;
+}
