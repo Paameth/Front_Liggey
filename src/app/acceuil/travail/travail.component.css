@@ -1,0 +1,32 @@
+.photo_job{
+    width: 400px;
+    height: 300px;
+    margin-left: 0%;
+}
+.logo_entreprise_mi{
+    width: 80px;
+    height: 50px;
+}
+div{
+    margin-left: 0%;
+}
+span{
+    background-color: rgb(185, 184, 184);
+    padding-left: 1%;
+    padding-right: 1%;
+}
+/* Conteneur principal qui va contenir tous les éléments ensemble */
+.conteneur-ensemble {
+    display: flex;
+    flex-wrap: nowrap; /* Empêche le retour à la ligne */
+    overflow-x: auto; /* Ajoute un défilement horizontal si nécessaire */
+    gap: 20px; /* Espace entre les éléments */
+    border: none;
+}
+
+/* Styles pour chaque élément ensemble */
+.ensemble {
+    flex: 0 0 auto; /* Empêche le redimensionnement */
+    min-width: 300px; /* Largeur minimale pour chaque élément (ajustez selon vos besoins) */
+    padding: 10px;
+}

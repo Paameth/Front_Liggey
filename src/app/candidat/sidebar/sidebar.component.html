@@ -1,0 +1,129 @@
+<div class="profile-container">
+        <!-- Header avec statut -->
+        <div class="profile-header">
+            <h2 class="profile-title">Mon statut</h2>
+            <p class="profile-subtitle">
+                Faites savoir aux entreprises si elles peuvent vous contacter
+            </p>
+            
+            <!-- Dropdown statut -->
+            <div class="status-dropdown">
+                <button class="status-button" id="statusButton">
+                    <div class="status-content">
+                        <span class="status-indicator"></span>
+                        <span class="status-text" id="statusText">Non disponible</span>
+                    </div>
+                    <svg class="dropdown-arrow" id="dropdownArrow" viewBox="0 0 12 8">
+                        <path d="M1 1l5 5 5-5"/>
+                    </svg>
+                </button>
+                
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <button class="dropdown-item selected" data-status="Non disponible">Non disponible</button>
+                    <button class="dropdown-item" data-status="Disponible">Disponible</button>
+                    <button class="dropdown-item" data-status="En recherche active">En recherche active</button>
+                    <button class="dropdown-item" data-status="Ouvert aux opportunités">Ouvert aux opportunités</button>
+                </div>
+            </div>
+
+            <!-- Info box -->
+            <div class="info-box">
+                <div class="info-icon">🏢</div>
+                <p class="info-text">
+                    Ajoutez votre entreprise actuelle dans votre profil pour pouvoir lui masquer votre statut.
+                </p>
+            </div>
+        </div>
+
+        <!-- Menu de navigation -->
+        <nav class="profile-nav">
+            <button class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Informations personnelles</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-label">Travail recherche</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">💼</span>
+                <span class="nav-label">Experience</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">⭐</span>
+                <span class="nav-label">Competence et expertise</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">🎓</span>
+                <span class="nav-label">Diplome et formation</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">📁</span>
+                <span class="nav-label">Autre ressource</span>
+            </button>
+        </nav>
+    </div>
+
+
+
+<script>
+        // Gestion du dropdown
+        const statusButton = document.getElementById('statusButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownArrow = document.getElementById('dropdownArrow');
+        const statusText = document.getElementById('statusText');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+        // Toggle dropdown
+        statusButton.addEventListener('click', function() {
+            const isOpen = dropdownMenu.classList.contains('show');
+            
+            if (isOpen) {
+                dropdownMenu.classList.remove('show');
+                statusButton.classList.remove('active');
+                dropdownArrow.classList.remove('rotated');
+            } else {
+                dropdownMenu.classList.add('show');
+                statusButton.classList.add('active');
+                dropdownArrow.classList.add('rotated');
+            }
+        });
+
+        // Sélection d'un statut
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const newStatus = this.getAttribute('data-status');
+                
+                // Mettre à jour le texte
+                statusText.textContent = newStatus;
+                
+                // Mettre à jour les classes selected
+                dropdownItems.forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Fermer le dropdown
+                dropdownMenu.classList.remove('show');
+                statusButton.classList.remove('active');
+                dropdownArrow.classList.remove('rotated');
+            });
+        });
+
+        // Fermer le dropdown en cliquant ailleurs
+        document.addEventListener('click', function(event) {
+            if (!statusButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+                statusButton.classList.remove('active');
+                dropdownArrow.classList.remove('rotated');
+            }
+        });
+
+        // Gestion des clics sur le menu
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const label = this.querySelector('.nav-label').textContent;
+                console.log('Menu cliqué:', label);
+                // Ajoutez ici votre logique de navigation
+            });
+        });
+    </script>
