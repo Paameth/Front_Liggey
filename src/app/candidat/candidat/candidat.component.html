@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row my-4 mx-2 mx-md-5">
+    <!-- Colonne vide à gauche sur écrans moyens et plus -->
+    <div class="d-none d-md-block col-md-4"></div>
+
+    
+
+
+    <!-- Colonne contenant les cartes -->
+    <div class="col-12 col-md-8 profil">
+
+        
+      <app-profil
+       
+        [isComplete]="false"
+        [buttonLabel]="'Modifier'">
+      </app-profil>
+      <app-card
+        [title]="'Travail recherché'"
+        [description]="'Dites-en plus aux recruteurs sur le job que vous recherchez.'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'">
+      </app-card>
+
+      <app-card
+        [title]="'Expérience'"
+        [description]="'Parlez-nous de vos expériences passées et actuelles de vos projets.'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'">
+      </app-card>
+
+      <app-card
+        [title]="'Compétences & expertises'"
+        [description]="'Mettez en avant les compétences et expertises qui vous différencient.'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'">
+      </app-card>
+
+      <app-card
+        [title]="'Diplômes & Formations'"
+        [description]="'Listez vos diplômes, formations et certifications pertinents.'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'">
+      </app-card>
+
+      <app-card
+        [title]="'Autres ressources'"
+        [description]="'Ajoutez des fichiers et des liens pour soutenir et accélérer vos candidatures.'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'">
+      </app-card>
+    </div>
+  </div>
+</div>
