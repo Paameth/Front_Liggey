@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output,EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,4 +14,11 @@ export class CardComponent {
   @Input() description: string = '';
   @Input() isComplete: boolean = false;
   @Input() buttonLabel: string = 'Ajouter';
+  
+
+  @Output() buttonClicked = new EventEmitter<void>();
+
+  onClick() {
+    this.buttonClicked.emit();
+  }
 }
