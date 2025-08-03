@@ -1,0 +1,111 @@
+
+
+
+
+.search-section {
+    
+    padding: 60px 0;
+}
+
+.search-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.search-title .highlight {
+    color: #6366f1;
+}
+
+.search-form {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.search-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: none;
+    overflow: hidden;
+}
+
+.input-group {
+    border: none;
+}
+
+.form-control, .form-select {
+    border: none;
+    border-radius: 0;
+    padding: 20px 16px;
+    font-size: 16px;
+    background: white;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border: none;
+    background: #f8f9fa;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+    font-size: 16px;
+}
+
+.input-group-text {
+    background: white;
+    border: none;
+    padding: 20px 16px;
+    color: #6b7280;
+}
+
+.search-input {
+    border-right: 1px solid #e5e7eb;
+}
+
+.location-input {
+    border-right: 1px solid #e5e7eb;
+}
+
+.job-type-select {
+    border-right: 1px solid #e5e7eb;
+}
+
+.filter-btn {
+    background: white;
+    border: none;
+    padding: 20px 16px;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-btn:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.filter-icon {
+    font-size: 20px;
+}
+
+
+
+/* Custom dropdown arrow */
+.form-select {
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 12px;
+}
+
+/* Focus states */
+.input-group:focus-within {
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.15);
+}

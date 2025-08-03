@@ -1,0 +1,106 @@
+<section class="search-section">
+        <div class="container">
+            <h1 class="search-title">
+                Trouver le travail <span class="highlight">qui vous correspond</span>
+            </h1>
+            
+            <div class="search-form">
+                <div class="card search-card">
+                    <div class="input-group">
+                        <!-- Search Input -->
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input 
+                            type="text" 
+                            class="form-control search-input" 
+                            placeholder="Cherchez un travail, mot clés ou entreprise"
+                            id="searchInput"
+                        >
+                        
+                        <!-- Location Input -->
+                        <span class="input-group-text">
+                            <i class="bi bi-geo-alt"></i>
+                        </span>
+                        <input 
+                            type="text" 
+                            class="form-control location-input" 
+                            placeholder="Dakar"
+                            value="Dakar"
+                            id="locationInput"
+                        >
+                        
+                        <!-- Job Type Select -->
+                        <span class="input-group-text">
+                            <i class="bi bi-briefcase"></i>
+                        </span>
+                        <select class="form-select job-type-select" id="jobTypeSelect">
+                            <option value="">type de travail</option>
+                            <option value="cdi">CDI</option>
+                            <option value="cdd">CDD</option>
+                            <option value="stage">Stage</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="temps-partiel">Temps partiel</option>
+                        </select>
+                        
+                        <!-- Filter Button -->
+                        <button class="filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-sliders filter-icon"></i>
+                        </button>
+                        
+                        <!-- Filter Dropdown -->
+                        <ul class="dropdown-menu dropdown-menu-end p-3" style="min-width: 250px;">
+                            <li>
+                                <h6 class="dropdown-header">Filtres avancés</h6>
+                            </li>
+                            <li>
+                                <div class="mb-3">
+                                    <label class="form-label">Salaire minimum</label>
+                                    <select class="form-select form-select-sm">
+                                        <option value="">Tous salaires</option>
+                                        <option value="100000">100 000 FCFA</option>
+                                        <option value="200000">200 000 FCFA</option>
+                                        <option value="300000">300 000 FCFA</option>
+                                        <option value="500000">500 000 FCFA</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mb-3">
+                                    <label class="form-label">Expérience</label>
+                                    <select class="form-select form-select-sm">
+                                        <option value="">Toute expérience</option>
+                                        <option value="junior">Débutant (0-2 ans)</option>
+                                        <option value="intermediate">Intermédiaire (2-5 ans)</option>
+                                        <option value="senior">Senior (5+ ans)</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remoteWork">
+                                    <label class="form-check-label" for="remoteWork">
+                                        Travail à distance
+                                    </label>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <button class="btn btn-primary btn-sm w-100" >
+                                    Appliquer les filtres
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Search Button (for mobile) -->
+                <div class="text-center mt-3 d-md-none">
+                    <button class="btn btn-primary btn-lg px-5" >
+                        <i class="bi bi-search me-2"></i>
+                        Rechercher
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>

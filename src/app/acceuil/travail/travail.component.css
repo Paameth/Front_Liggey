@@ -14,6 +14,7 @@ span{
     background-color: rgb(185, 184, 184);
     padding-left: 1%;
     padding-right: 1%;
+    margin: 20px;
 }
 /* Conteneur principal qui va contenir tous les éléments ensemble */
 .conteneur-ensemble {
@@ -29,4 +30,60 @@ span{
     flex: 0 0 auto; /* Empêche le redimensionnement */
     min-width: 300px; /* Largeur minimale pour chaque élément (ajustez selon vos besoins) */
     padding: 10px;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+        .main-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+
+.category-tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    padding-bottom: 0;
+}
+
+.category-tab {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 12px 0;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.category-tab:hover {
+    color: #374151;
+}
+
+.category-tab.active {
+    color: #1f2937;
+    font-weight: 500;
+}
+
+.category-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #4f46e5;
+}
+
+.see-more-btn:active {
+    transform: translateY(0);
 }
