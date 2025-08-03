@@ -1,0 +1,24 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+.modal {
+  z-index: 1050;
+ 
+}
+
+.modal-title{
+    color: blue;
+    
+}
+
+.custom-popup-width {
+  max-width: 500px; /* Ajuste à ta convenance (ex. 400px, 500px) */
+  width: 100%;
+}

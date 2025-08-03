@@ -4,3 +4,8 @@
     margin-left: 0;
     margin-right: 0;
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
