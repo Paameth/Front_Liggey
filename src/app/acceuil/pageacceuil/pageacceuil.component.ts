@@ -7,7 +7,7 @@ import { RechercheComponent } from "../recherche/recherche.component";
 
 @Component({
   selector: 'app-pageacceuil',
-  imports: [CommonModule,HeaderComponent, FooterComponent, TravailComponent, CommonModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, TravailComponent, CommonModule, RechercheComponent],
   templateUrl: './pageacceuil.component.html',
   styleUrl: './pageacceuil.component.css'
 })
