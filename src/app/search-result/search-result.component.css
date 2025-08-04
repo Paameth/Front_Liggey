@@ -1,0 +1,15 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.bas{
+    margin-top: 50px;
+}
+.job {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 0 60px;
+}

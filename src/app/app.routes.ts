@@ -11,6 +11,7 @@ import { PageacceuilComponent } from './acceuil/pageacceuil/pageacceuil.componen
 import { RechercheComponent } from './acceuil/recherche/recherche.component';
 import { PagecandidatComponent } from './candidat/pagecandidat/pagecandidat.component';
 import { PagerecruteurComponent } from './recruteur/pagerecruteur/pagerecruteur.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 export const routes: Routes = [
@@ -26,5 +27,6 @@ export const routes: Routes = [
     { path: 'candidat', component: CandidatComponent },
     { path: 'recherche', component:RechercheComponent },
     { path: 'pagecandidat', component: PagecandidatComponent },
-    { path: 'recruteur', component: PagerecruteurComponent }
+    { path: 'recruteur', component: PagerecruteurComponent },
+    {path: 'search-result', component: SearchResultComponent}
 ];
