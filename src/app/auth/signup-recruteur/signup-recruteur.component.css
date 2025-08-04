@@ -1,0 +1,8 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.bas{
+    margin-top: 50px;
+}

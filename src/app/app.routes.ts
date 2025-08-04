@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import {LoginComponent} from './auth/login/login.component';
+import { SignupRecruteurComponent } from './auth/signup-recruteur/signup-recruteur.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CardComponent } from './candidat/card/card.component';
@@ -8,17 +10,21 @@ import { SidebarComponent } from './candidat/sidebar/sidebar.component';
 import { PageacceuilComponent } from './acceuil/pageacceuil/pageacceuil.component';
 import { RechercheComponent } from './acceuil/recherche/recherche.component';
 import { PagecandidatComponent } from './candidat/pagecandidat/pagecandidat.component';
+import { PagerecruteurComponent } from './recruteur/pagerecruteur/pagerecruteur.component';
 
 
 export const routes: Routes = [
-    
+    { path: 'login',component: LoginComponent},
+    { path: 'login-recruteur',  loadComponent: () => import('./auth/login-recruteur/login-recruteur.component').then(m => m.LoginRecruteurComponent)},
+    { path: 'signup-recruteur',component: SignupRecruteurComponent},
+    {path: 'signup', loadComponent: () => import('./auth/signup/signup.component').then(m => m.SignupComponent)},
+    //{ path: '', redirectTo: 'login', pathMatch: 'full' }, // temporairement
       //{ path: '', component: HeaderComponent },
-      
-    
     { path: '', component: PageacceuilComponent },
     { path: 'travail', component:TravailComponent },
     { path:'sidebar',component:SidebarComponent},
     { path: 'candidat', component: CandidatComponent },
     { path: 'recherche', component:RechercheComponent },
-    { path: 'pagecandidat', component: PagecandidatComponent }
+    { path: 'pagecandidat', component: PagecandidatComponent },
+    { path: 'recruteur', component: PagerecruteurComponent }
 ];

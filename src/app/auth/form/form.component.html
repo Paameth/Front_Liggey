@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="titre">
+    <h2>{{ isRegister ? "Créez votre compte" : "Accédez à votre espace personnel" }}</h2>
+    <p>
+      {{ isRegister ? "Déjà inscrit ?" : "Connectez-vous ou" }}
+      <a [routerLink]="accountLinkUrl">
+        {{ isRegister ? "Connectez-vous" : "inscrivez-vous" }}
+      </a>
+      {{ isRegister ? "" : "gratuitement." }}
+    </p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mail-address">
+      <label for="email">Adresse mail*</label>
+      <input type="email" id="email" formControlName="email" />
+    </div>
+
+    <div class="pass">
+      <div class="password-row">
+        <label for="password">Mot de passe*</label>
+        <a *ngIf="!isRegister" [routerLink]="forgetPasswordLink">Mot de passe oublié ?</a>
+      </div>
+      <input type="password" id="password" formControlName="password" />
+    </div>
+
+    <div class="pass" *ngIf="isRegister">
+      <div class="password-row">
+        <label>Confirmez le mot de passe*</label>
+      </div>
+      <input type="password" formControlName="confirmPassword" />
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="remember" formControlName="rememberMe" />
+      <label for="remember">Rester connecté</label>
+    </div>
+
+    <button type="submit" class="submit-btn">{{ submitText }}</button>
+  </form>
+
+  <a [routerLink]="recruteurLink" class="recruiter-link">{{ recruteurLinkText }}</a>
+</div>

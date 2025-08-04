@@ -1,0 +1,21 @@
+<div><app-header></app-header></div>
+<div class="app-container bas">
+    <app-carousel 
+        [items]="carouselItems"
+        [autoplay]="true"
+        [autoplayInterval]="4000"
+        [infinite]="true">
+    </app-carousel>
+    <app-form
+        [title]="'Accédez à votre espace personnel'"
+        [subtitle]="'Connectez-vous '"
+        [accountLinkText]="'ou inscrivez-vous'"
+        [submitText]="'Se connecter'"
+        (submitted)="handleSignup($event)"
+        [isRegister]="true"
+        [accountLinkUrl]="'/login'"
+        [recruteurLink]="'/signup-recruteur'"
+        >
+    </app-form>
+</div>
+<div><app-footer></app-footer></div>
