@@ -10,21 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './form.component.css'
 })
 export class FormComponent {
-  @Input() title: string = 'Accédez à votre espace personnel';
-  @Input() submitText: string = 'Se connecter ';
-  @Input() subtitle: string = 'Connectez-vous ou';
-  @Input() accountLinkText: string = 'inscrivez-vous';
-  @Input() recruteurLinkText: string = 'Je suis recruteur';
-  @Input() recruteurLink: string = '/login-recruteur';
-  @Input() forgetPasswordLink: string = '#';
-  @Input() isRegister: boolean = false; // Pour savoir si c'est un formulaire d'inscription ou de connexion
-  @Input() accountLinkUrl: string = '/login'; // Lien par défaut pour le formulaire de connexion
-  @Output() submitForm = new EventEmitter<any>();
 
-  
-  form!: FormGroup;
-
-  constructor(private fb: FormBuilder) {}
   ngOnInit():void{
     
       this.form = this.fb.group({
@@ -41,6 +27,22 @@ export class FormComponent {
 
   this.form.get('confirmPassword')?.updateValueAndValidity();
     }
+  
+  @Input() title: string = 'Accédez à votre espace personnel';
+  @Input() submitText: string = 'Se connecter ';
+  @Input() subtitle: string = 'Connectez-vous ou';
+  @Input() accountLinkText: string = 'inscrivez-vous';
+  @Input() recruteurLinkText: string = 'Je suis recruteur';
+  @Input() recruteurLink: string = '/login-recruteur';
+  @Input() forgetPasswordLink: string = '#';
+  @Input() isRegister: boolean = false; // Pour savoir si c'est un formulaire d'inscription ou de connexion
+  @Input() accountLinkUrl: string = '/login'; // Lien par défaut pour le formulaire de connexion
+  @Output() submitForm = new EventEmitter<any>();
+
+  
+  form!: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
   
   
 
