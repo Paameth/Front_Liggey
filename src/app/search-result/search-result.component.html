@@ -2,9 +2,9 @@
     <app-header></app-header>
 </div>
 <div class="app-container bas">
-    <app-recherche></app-recherche>
-    <div class="job">
-        <app-job></app-job>
+    <app-recherche  ></app-recherche>
+    <div class="job" *ngFor="let offre of offres" >
+        <app-job [offre]="offre"></app-job>
     </div>
     
 </div>

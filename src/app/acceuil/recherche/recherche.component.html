@@ -8,14 +8,16 @@
                 <div class="card search-card">
                     <div class="input-group">
                         <!-- Search Input -->
-                        <span class="input-group-text">
+                         
+                        <button class="input-group-text" type="button" (click)="resultatRecherche()">
                             <i class="bi bi-search"></i>
-                        </span>
+                        </button>
                         <input 
                             type="text" 
                             class="form-control search-input" 
                             placeholder="Cherchez un travail, mot clés ou entreprise"
                             id="searchInput"
+                            [(ngModel)]="poste"
                         >
                         
                         <!-- Location Input -->
@@ -28,13 +30,14 @@
                             placeholder="Dakar"
                             value="Dakar"
                             id="locationInput"
+                            [(ngModel)]="localisation"
                         >
                         
                         <!-- Job Type Select -->
                         <span class="input-group-text">
                             <i class="bi bi-briefcase"></i>
                         </span>
-                        <select class="form-select job-type-select" id="jobTypeSelect">
+                        <select class="form-select job-type-select" id="jobTypeSelect" [(ngModel)]="typeContrat">
                             <option value="">type de travail</option>
                             <option value="cdi">CDI</option>
                             <option value="cdd">CDD</option>
@@ -96,7 +99,7 @@
                 
                 <!-- Search Button (for mobile) -->
                 <div class="text-center mt-3 d-md-none">
-                    <button class="btn btn-primary btn-lg px-5" >
+                    <button class="btn btn-primary btn-lg px-5" (click)="resultatRecherche()">
                         <i class="bi bi-search me-2"></i>
                         Rechercher
                     </button>

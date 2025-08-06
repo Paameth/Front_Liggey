@@ -28,5 +28,10 @@ export const routes: Routes = [
     { path: 'recherche', component:RechercheComponent },
     { path: 'pagecandidat', component: PagecandidatComponent },
     { path: 'recruteur', component: PagerecruteurComponent },
-    {path: 'search-result', component: SearchResultComponent}
+    {
+  path: 'search-result',
+  loadComponent: () => import('./search-result/search-result.component').then(m => m.SearchResultComponent)
+}
+
+   
 ];
