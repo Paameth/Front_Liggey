@@ -4,10 +4,14 @@ import { FormComponent } from '../form/form.component';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { RecruteurService } from '../../services/recruteur.service';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-signup-recruteur',
-  imports: [CarouselComponent, FormComponent, HeaderComponent, FooterComponent,CommonModule],
+  standalone:true,
+  imports: [CarouselComponent, FormComponent, HeaderComponent, FooterComponent,CommonModule,RouterModule],
   templateUrl: './signup-recruteur.component.html',
   styleUrl: './signup-recruteur.component.css'
 })
@@ -30,8 +34,28 @@ export class SignupRecruteurComponent {
     }
   ];
 
-  handleSignupRecruteur(data: any) {
-    console.log('Données de connexion :', data);
-    // traitement (authentification, requête HTTP, etc.)
-  }
+  constructor(
+    private recruteurService: RecruteurService,
+    private router: Router,
+  ) { }
+
+ handleSignupRecruteur(data: any): void {
+  console.log('Données brutes du formulaire :', data);
+
+  
+
+  this.recruteurService.register(data).subscribe({
+    next: (res) => {
+      alert('Inscription réussie !');
+       // Redirection vers le login recruteur
+       setTimeout(() => this.router.navigate(['/login-recruteur']), 0);
+    },
+    error: (err) => {
+      console.error('Erreur lors de l\'inscription', err);
+      alert('Une erreur est survenue lors de l\'inscription');
+    }
+  });
+}
+
+
 }
