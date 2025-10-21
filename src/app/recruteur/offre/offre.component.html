@@ -1,0 +1,44 @@
+      <app-card
+        [title]="'Ajouter Offre'"
+        [description]="'Informer les eventuelles interessees des offres disponible'"
+        [isComplete]="false"
+        [buttonLabel]="'Ajouter'"
+        (buttonClicked)="openPopup('ajouterOffre')">
+      </app-card>
+
+      <app-popup
+    *ngIf="currentPopup === 'ajouterOffre'"
+    [title]="'Ajouter Offre'"
+    (close)="closePopup()"
+    >
+ 
+  <form>
+    <!-- Formulaire type de job -->
+    <div class="m-3">
+      <label for="intitule" class="form-label">Intitule du poste</label>
+      <input class="form-control" type="text" name="intitule" id="intitule" />
+    </div>
+    <div class="m-3">
+      <label for="lieudetravail" class="form-label">Lieu de Travail</label>
+      <input class="form-control" type="text" name="lieudetravail" id="lieudetravail" />
+    </div>
+    <div class="m-3">
+      <label for="contrat" class="form-label">Type de contrat</label>
+      <input class="form-control" type="text" name="contrat" id="contrat" />
+    </div>
+    <div class="m-3">
+      <label for="salaire" class="form-label">Salaire mensuel desire</label>
+      <input class="form-control" type="text" name="salaire" id="salaire" />
+    </div>
+    <div class="m-3">
+      <input class="form-control" type="file" name="fichier" id="fichier" />
+    </div>
+    <div class="text-center m-3">
+      <button type="submit" class="btn btn-primary w-100 enregistrer">Enregistrer</button>
+    </div>
+  </form>
+</app-popup>
+      
+
+ 
+ 
