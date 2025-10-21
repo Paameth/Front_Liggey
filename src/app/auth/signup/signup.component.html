@@ -10,11 +10,12 @@
         [title]="'Accédez à votre espace personnel'"
         [subtitle]="'Connectez-vous '"
         [accountLinkText]="'ou inscrivez-vous'"
-        [submitText]="'Se connecter'"
-        (submitted)="handleSignup($event)"
+        [submitText]="'S\'inscrire'"
+        (submitForm)="handleSignupCandidat($event)"
         [isRegister]="true"
         [accountLinkUrl]="'/login'"
         [recruteurLink]="'/signup-recruteur'"
+        [recruteurLinkText]="'Je suis recruteur'"
         >
     </app-form>
 </div>

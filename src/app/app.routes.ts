@@ -15,7 +15,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 
 
 export const routes: Routes = [
-    { path: 'login',component: LoginComponent},
+    { path: 'login',loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent)},
     { path: 'login-recruteur',  loadComponent: () => import('./auth/login-recruteur/login-recruteur.component').then(m => m.LoginRecruteurComponent)},
     { path: 'signup-recruteur',component: SignupRecruteurComponent},
     {path: 'signup', loadComponent: () => import('./auth/signup/signup.component').then(m => m.SignupComponent)},

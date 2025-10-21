@@ -37,6 +37,7 @@ export class FormComponent {
   @Input() forgetPasswordLink: string = '#';
   @Input() isRegister: boolean = false; // Pour savoir si c'est un formulaire d'inscription ou de connexion
   @Input() accountLinkUrl: string = '/login'; // Lien par défaut pour le formulaire de connexion
+ 
   @Output() submitForm = new EventEmitter<any>();
 
   
