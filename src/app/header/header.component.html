@@ -34,13 +34,29 @@
         </li>
 
         <!-- Ici on met ms-auto pour pousser boutons à droite -->
-        <li class="nav-item col-1 d-flex align-items-center justify-content-center  ">
-          <button class="inscription me-2 " (click)=goToSignup()>Inscription</button>
+        <li class="nav-item col-1 d-flex align-items-center justify-content-center  " *ngIf="!isLoggedIn">
+          <button class="inscription me-2 "  (click)=goToSignup()>Inscription</button>
         </li>
 
-        <li class="nav-item col-1 d-flex align-items-center justify-content-center  ">
-          <button class="connexion" (click)=goToLogin()>Connexion</button>
+        <li class="nav-item col-1 d-flex align-items-center justify-content-center  " *ngIf="!isLoggedIn" >
+          <button class="connexion"   (click)=goToLogin()>Connexion</button>
         </li>
+
+            <!-- Boutons visibles si connecté -->
+       <!-- Icône profil visible si connecté -->
+      <li class="nav-item d-flex align-items-center justify-content-center" *ngIf="isLoggedIn">
+        <button class="icon-btn" (click)="goToProfile()">
+          <i class="bi bi-person-circle fs-4"></i>
+        </button>
+      </li>
+
+            <!-- Icône logout -->
+      <li class="nav-item d-flex align-items-center justify-content-center" *ngIf="isLoggedIn">
+        <button class="icon-btn" (click)="logout()">
+          <i class="bi bi-box-arrow-right fs-4"></i>
+        </button>
+      </li>
+
 
       </ul>
     </div>

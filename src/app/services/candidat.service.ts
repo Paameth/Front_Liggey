@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ export class CandidatService {
   private baseUrl = 'http://localhost:8080/api/register-candidat';
   private authUrl='http://localhost:8080/api/authenticate';
   private UrlLogin='http://localhost:8080/api/candidats/is-candidat';
+  private completerUrl='http://localhost:8080/api/candidats/complete-profile'
   constructor(private http:HttpClient) { }
 
   register(data: any): Observable<any> {
@@ -32,6 +33,17 @@ isCandidat(): Observable<boolean> {
     }
   });
 }
+
+CompleterProfil(data: FormData): Observable<any> {
+
+    // Récupérer le token JWT depuis localStorage
+    const token = localStorage.getItem('auth_token');
+
+    const headers = token ? new HttpHeaders({ 'Authorization': `Bearer ${token}` }) : undefined;
+
+  
+    return this.http.post(this.completerUrl, data, {headers});
+  }
 
 
 }
