@@ -4,6 +4,8 @@ import { FormComponent } from '../form/form.component';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { CandidatService } from '../../services/candidat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +14,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
+
+  constructor(
+    private candidatService: CandidatService,
+    private router: Router,
+  ) { }
+
   carouselItems: CarouselItem[] = [
     {
       image: './image1.png',
@@ -30,8 +38,21 @@ export class SignupComponent {
     }
   ];
 
-  handleSignup(data: any) {
-    console.log('Données de connexion :', data);
-    // traitement (authentification, requête HTTP, etc.)
-  }
+  handleSignupCandidat(data: any): void {
+  console.log('Données brutes du formulaire :', data);
+
+  
+
+  this.candidatService.register(data).subscribe({
+    next: (res) => {
+      alert('Inscription réussie !');
+       // Redirection vers le login recruteur
+       setTimeout(() => this.router.navigate(['/login']), 0);
+    },
+    error: (err) => {
+      console.error('Erreur lors de l\'inscription', err);
+      alert('Une erreur est survenue lors de l\'inscription');
+    }
+  });
+}
 }

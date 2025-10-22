@@ -11,10 +11,11 @@ import { PageacceuilComponent } from './acceuil/pageacceuil/pageacceuil.componen
 import { RechercheComponent } from './acceuil/recherche/recherche.component';
 import { PagecandidatComponent } from './candidat/pagecandidat/pagecandidat.component';
 import { PagerecruteurComponent } from './recruteur/pagerecruteur/pagerecruteur.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 export const routes: Routes = [
-    { path: 'login',component: LoginComponent},
+    { path: 'login',loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent)},
     { path: 'login-recruteur',  loadComponent: () => import('./auth/login-recruteur/login-recruteur.component').then(m => m.LoginRecruteurComponent)},
     { path: 'signup-recruteur',component: SignupRecruteurComponent},
     {path: 'signup', loadComponent: () => import('./auth/signup/signup.component').then(m => m.SignupComponent)},
@@ -26,5 +27,11 @@ export const routes: Routes = [
     { path: 'candidat', component: CandidatComponent },
     { path: 'recherche', component:RechercheComponent },
     { path: 'pagecandidat', component: PagecandidatComponent },
-    { path: 'recruteur', component: PagerecruteurComponent }
+    { path: 'recruteur', component: PagerecruteurComponent },
+    {
+  path: 'search-result',
+  loadComponent: () => import('./search-result/search-result.component').then(m => m.SearchResultComponent)
+}
+
+   
 ];

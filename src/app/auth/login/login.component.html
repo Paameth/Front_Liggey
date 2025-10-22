@@ -13,9 +13,10 @@
         [subtitle]="'Connectez-vous '"
         [accountLinkText]="'ou inscrivez-vous'"
         [submitText]="'Se connecter'"
-        (submitted)="handleLogin($event)"
+        (submitForm)="handleLoginCandidat($event)"
         [isRegister]="false"
         [accountLinkUrl]="'/signup'"
+        [recruteurLinkText]="'Je suis recruteur'"
         [recruteurLink]="'/signup-recruteur'"
         >
     </app-form>

@@ -4,6 +4,7 @@ import { ProfilComponent } from '../profil/profil.component';
 import { PopupComponent } from '../popup/popup.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: 'app-candidat',
@@ -15,6 +16,7 @@ export class CandidatComponent {
   currentPopup :string|null=null
   skills: string[] = [];
   skillInput: string = '';
+  selectedPhoto: File | null = null;
 
   experiences: { poste: string; entreprise: string;ville:string;type_contrat:string }[] = [];
   newExperience = { poste: '', entreprise: '',ville:'',type_contrat:'' };
@@ -29,16 +31,9 @@ export class CandidatComponent {
   nouveauFichier?: File;
 
   // Profil utilisateur
-  userProfil = {
-    photoUrl:'',
-    nom: 'Lala ',//non modifiable
-    prenom:'Diallo',
-    email: 'LalaDiallo@gmail.com',
-    telephone: '701234567',
-    dateNaissance: '09/03/2001' ,// non modifiable
-    adresse:'Saint-Louis',
-    genre:'Femme'
-  };
+  userProfil :any= {};
+
+  constructor(private candidatService: CandidatService) {}
 
 
 
@@ -103,6 +98,8 @@ export class CandidatComponent {
     }
   }
 
+  handlePhotoChange(event:any){}
+
   addRessource() {
     const lien = this.nouveauLien.trim();
     const fichier = this.nouveauFichier;
@@ -122,21 +119,41 @@ export class CandidatComponent {
     this.ressources.splice(index, 1);
   }
 
-   updateProfil() {
-    // tu peux faire une requête HTTP ici si besoin
-    this.closePopup();
-  }
-
-  handlePhotoChange(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.userProfil.photoUrl = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
+   CompleteProfil() {
+    const formData = new FormData();
+    formData.append('nom', this.userProfil.nom || '');
+    formData.append('prenom', this.userProfil.prenom || '');
+    formData.append('genre', this.userProfil.genre || '');
+    if (this.userProfil.telephone) {
+  // Supprimer tout ce qui n'est pas chiffre
+  const telNumber = this.userProfil.telephone.replace(/\D/g, '');
+  formData.append('telephone', telNumber);
 }
+    formData.append('adresse', this.userProfil.adresse || '');
+   if (this.userProfil.dateNaissance) {
+  const date = new Date(this.userProfil.dateNaissance);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  formData.append('dateNaissance', `${day}/${month}/${year}`);
+}
+   
+    if (this.selectedPhoto) {
+      formData.append('photo', this.selectedPhoto);
+    }
+
+    this.candidatService.CompleterProfil(formData).subscribe({
+      next: (response) => {
+        console.log('Profil complet', response);
+        alert('Profil complete avec succès !');
+        this.closePopup();
+      },
+      error: (err) => {
+        console.error('Erreur mise à jour profil', err);
+        alert('Erreur : ' + err.error?.message || err.message);
+      }
+    });
+  }
 
   
 }

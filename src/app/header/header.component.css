@@ -87,3 +87,22 @@ body{
     width: 10vw;  /* prend 10% de la largeur de l’écran */
     height: auto;
 }
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #5170ff;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.icon-btn:hover {
+  color: #314ecb;
+  transform: scale(1.1);
+}
+
+.icon-btn i {
+  pointer-events: none; /* L'icône ne bloque pas le clic sur le bouton */
+}
+

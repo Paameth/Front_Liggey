@@ -4,10 +4,13 @@ import { FormComponent } from '../form/form.component';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { RecruteurService } from '../../services/recruteur.service';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-login-recruteur',
+  standalone:true,
   imports: [CarouselComponent, FormComponent, HeaderComponent, FooterComponent,CommonModule],
   templateUrl: './login-recruteur.component.html',
   styleUrl: './login-recruteur.component.css'
@@ -31,8 +34,38 @@ export class LoginRecruteurComponent {
     }
   ];
 
-  handleLoginRecruteur(data: any) {
-    console.log('Données de connexion :', data);
-    // traitement (authentification, requête HTTP, etc.)
+  constructor(private recruteurService: RecruteurService,private router: Router) {}
+  
+
+  handleLoginRecruteur(data: any):void {
+   this.recruteurService.login(data).subscribe({
+    next: (res) => {
+      const token = res.body.id_token;
+
+      if (token) {
+        // 1. Stocker le token dans le localStorage
+        localStorage.setItem('auth_token', token);
+
+        // 2. Vérifier s'il est recruteur
+        this.recruteurService.isRecruteur().subscribe({
+          next: (isRecruteur: boolean) => {
+            if (isRecruteur) {
+              // ✅ Redirection si c’est un recruteur
+              this.router.navigate(['/recruteur']);
+            } else {
+              alert("Vous n'avez pas accès à cet espace.");
+            }
+          },
+          error: () => {
+            alert("Erreur lors de la vérification du rôle.");
+          }
+        });
+      }
+    },
+    error: (err) => {
+      console.error('Erreur lors de la connexion', err);
+      alert('Identifiants invalides ou erreur serveur.');
+    }
+  });
   }
 }

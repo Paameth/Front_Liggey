@@ -1,23 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { RechercheComponent } from './recherche.component';
+@Component({
+  selector: 'app-recherche',
+  templateUrl: './recherche.component.html',
+})
+export class RechercheComponent {
 
-describe('RechercheComponent', () => {
-  let component: RechercheComponent;
-  let fixture: ComponentFixture<RechercheComponent>;
+  poste: string = '';
+  localisation: string = 'Dakar';
+  typeContrat: string = '';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RechercheComponent]
-    })
-    .compileComponents();
+ 
 
-    fixture = TestBed.createComponent(RechercheComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  constructor(private router: Router) {}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  resultatRecherche() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/search-result'], {
+      queryParams: {
+        poste: this.poste,
+        localisation: this.localisation,
+        typeContrat: this.typeContrat
+      }
+    });
+  })}
+}
