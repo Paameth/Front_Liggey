@@ -12,7 +12,7 @@
     (close)="closePopup()"
     >
  
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <!-- Formulaire type de job -->
     <div class="m-3">
       <label for="intitule" class="form-label">Intitule du poste</label>

@@ -22,6 +22,7 @@ export class OffreComponent {
   contrat: string = '';
   salaire: number | null = null;
   fichier: File | null = null;
+  recruteurId:number | null=null;
 
   constructor(private offreService: OffreService) {}
 
@@ -43,21 +44,20 @@ export class OffreComponent {
     intitule: this.intitule,
     lieudetravail: this.lieudetravail,
     contrat: this.contrat,
-    salaire: this.salaire
+    salaire: this.salaire,
+    recruteurId:1,
   };
 
   this.offreService.ajouterOffre(offre).subscribe({
     next: (response) => {
-      console.log('✅ Offre ajoutée avec succès :', response);
+      console.log(' Offre ajoutée avec succès :', response);
       alert('Offre ajoutée avec succès !');
       this.closePopup();
     },
     error: (error) => {
-      console.error('❌ Erreur lors de l’ajout :', error);
+      console.error(' Erreur lors de l’ajout :', error);
       alert('Erreur lors de l’ajout de l’offre.');
     },
   });
-}
-
-  
+} 
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -34,6 +34,11 @@ export class OffreService {
 
   // offre.service.ts
 ajouterOffre(offre: any): Observable<any> {
+
+  const token=localStorage.getItem('auth_token');
+  const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
+
+
   return this.http.post('http://localhost:8080/api/offres', offre);
 }
     
