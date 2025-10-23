@@ -9,6 +9,7 @@ export class OffreService {
 
   
     private baseUrl = 'http://localhost:8080/api/offres/_search/offres'; // change selon ton backend
+    private apiUrl = 'http://localhost:8080/api/offres'; // Ton backend JHipster
 
     constructor(private http: HttpClient) {}
 
@@ -28,6 +29,13 @@ export class OffreService {
   return this.http.get(`${this.baseUrl}`, { params });
 }
 
+
+//Ffontion de l'API ajouter offre
+
+  // offre.service.ts
+ajouterOffre(offre: any): Observable<any> {
+  return this.http.post('http://localhost:8080/api/offres', offre);
+}
     
 }
 
