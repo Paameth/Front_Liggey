@@ -2,9 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface Recruteur {
+  id?: number;
+  nomEntreprise?: string;
+  secteurEntreprise?: string;
+  user?: {
+    login?: string;
+    firstName?: string;
+    lastName?: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class RecruteurService {
 
   private baseUrl = 'http://localhost:8080/api/register-recruteur';
@@ -33,5 +46,18 @@ isRecruteur(): Observable<boolean> {
   });
 }
 
+getCurrentRecruteur(): Observable<Recruteur> {
+  const token = localStorage.getItem('auth_token');
+  return this.http.get<Recruteur>('http://localhost:8080/api/recruteurs/current', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+
+updateCurrentRecruteur(data: Recruteur): Observable<Recruteur> {
+  return this.http.put<Recruteur>('http://localhost:8080/recruteurs/current', data);
+}
 
 }
