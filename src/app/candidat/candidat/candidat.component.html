@@ -155,7 +155,7 @@
   [title]="'Ajouter une expérience'"
   (close)="closePopup()"
 >
-  <form (submit)="addExperience(); $event.preventDefault();">
+  <form (submit)="AjouterExperience(); $event.preventDefault();">
     <div class="m-3">
       <label for="poste" class="form-label">Poste</label>
       <input
@@ -163,7 +163,7 @@
         type="text"
         name="poste"
         id="poste"
-        [(ngModel)]="newExperience.poste"
+        [(ngModel)]="experience.poste"
       />
     </div>
     <div class="m-3">
@@ -173,19 +173,16 @@
         type="text"
         name="ville_experience"
         id="ville_experience"
-        [(ngModel)]="newExperience.ville"
+        [(ngModel)]="experience.ville"
       />
     </div>
-    <div class="m-3">
-      <label for="type_contrat" class="form-label">Type de contrat</label>
-      <input
-        class="form-control"
-        type="text"
-        name="type_contrat"
-        id="type_contrat"
-        [(ngModel)]="newExperience.type_contrat"
-      />
-    </div>
+     <!-- Type de contrat -->
+  <div class="m-3">
+    <label for="contrat" class="form-label">Type de contrat</label>
+    <select class="form-control" id="contrat" [(ngModel)]="experience.contrat" name="contrat" required>
+      <option *ngFor="let c of typeContrats" [value]="c">{{ c }}</option>
+    </select>
+  </div>
 
     <div class="m-3">
       <label for="entreprise" class="form-label">Entreprise</label>
@@ -194,7 +191,7 @@
         type="text"
         name="entreprise"
         id="entreprise"
-        [(ngModel)]="newExperience.entreprise"
+        [(ngModel)]="experience.entreprise"
       />
     </div>
     <div class="text-center m-3">

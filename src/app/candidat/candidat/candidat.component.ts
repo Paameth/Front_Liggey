@@ -37,6 +37,7 @@ export class CandidatComponent {
   userProfil!: UserProfile;
 
   job:any={};
+  experience:any={};
 
   typeContrats = Object.values(TypeContrat);
 
@@ -210,18 +211,63 @@ export class CandidatComponent {
   }
 
 
+   AjouterExperience() {
+    const formData = new FormData();
+    formData.append('poste', this.experience.poste || '');
+    formData.append('entreprise', this.experience.entreprise );
+    // Vérification de contrat avant toUpperCase
+  const contratValue = this.experience.contrat || '';
+  formData.append('contrat', contratValue);
+    formData.append('ville', this.experience.ville || '');
+
+
+    this.candidatService.AjouterExperience(formData).subscribe({
+      next: (response) => {
+        console.log('Profil complet', response);
+        alert('Experience ajoutee avec succès !');
+        this.isComplete = true;
+        this.closePopup();
+      },
+      error: (err) => {
+        console.error('Erreur ajout experience', err);
+        alert('Erreur : ' + err.error?.message || err.message);
+      }
+    });
+
+
+    
+  }
+
+
 
  
+// Charger le candidat connecté et vérifier si le profil est complet
 loadCurrentCandidat(): void {
   this.candidatService.getCurrentCandidat().subscribe({
     next: (data) => {
       this.userProfil = data;
-      console.log('Profil candidat chargé :', data);
+
+      // Vérifier si le profil est complet
+      this.isComplete = this.checkProfilComplet(this.userProfil);
+      console.log('Profil candidat chargé :', data, 'Profil complet :', this.isComplete);
     },
     error: (err) => {
       console.error('Erreur lors du chargement du profil candidat', err);
     },
   });
+}
+
+// Vérifie si toutes les infos essentielles sont présentes
+checkProfilComplet(profil: UserProfile): boolean {
+  return !!(
+    profil.nom &&
+    profil.prenom &&
+    profil.email &&
+    profil.telephone &&
+    profil.adresse &&
+    profil.dateNaissance 
+    
+  );
 }
 
 

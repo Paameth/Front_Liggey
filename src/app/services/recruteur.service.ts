@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ export class RecruteurService {
   private baseUrl = 'http://localhost:8080/api/register-recruteur';
   private authUrl='http://localhost:8080/api/authenticate';
   private UrlLogin='http://localhost:8080/api/recruteurs/is-recruteur';
+   private getRecruteurUrl='http://localhost:8080/api/recruteurs/recruteur';
   constructor(private http:HttpClient) { }
 
   register(data: any): Observable<any> {
@@ -33,5 +34,14 @@ isRecruteur(): Observable<boolean> {
   });
 }
 
+
+  getCurrentRecruteur(): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = token ?new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }) : undefined;
+
+  return this.http.get(this.getRecruteurUrl, { headers });
+}
 
 }
