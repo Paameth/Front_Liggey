@@ -3,7 +3,8 @@
     <!-- Colonne contenant les cartes -->
     <div class="col-12 col-md-12 profil">  
       <app-profil
-        [isComplete]="false"
+        [userProfile]="userProfil"
+        [isComplete]="isComplete"
         [buttonLabel]="'Modifier'"
         (buttonClicked)="openPopup('profil')">
       </app-profil>
@@ -114,28 +115,39 @@
   (close)="closePopup()"
 >
  
-  <form>
-    <!-- Formulaire type de job -->
-    <div class="m-3">
-      <label for="intitule" class="form-label">Intitule du poste</label>
-      <input class="form-control" type="text" name="intitule" id="intitule" />
-    </div>
-    <div class="m-3">
-      <label for="ville" class="form-label">Ville de preference</label>
-      <input class="form-control" type="text" name="ville" id="ville" />
-    </div>
-    <div class="m-3">
-      <label for="contrat" class="form-label">Type de contrat</label>
-      <input class="form-control" type="text" name="contrat" id="contrat" />
-    </div>
-    <div class="m-3">
-      <label for="salaire" class="form-label">Salaire mensuel desire</label>
-      <input class="form-control" type="text" name="salaire" id="salaire" />
-    </div>
-    <div class="text-center m-3">
-      <button type="submit" class="btn btn-primary w-100 enregistrer">Enregistrer</button>
-    </div>
-  </form>
+  <form (submit)="AjouterTravail(); $event.preventDefault();" method="post">
+  <!-- Intitulé du poste -->
+  <div class="m-3">
+    <label for="intitule" class="form-label">Intitulé du poste</label>
+    <input class="form-control" type="text" id="intitule" [(ngModel)]="job.intitule" name="intitule" required />
+  </div>
+
+  <!-- Ville de préférence -->
+  <div class="m-3">
+    <label for="ville" class="form-label">Ville de préférence</label>
+    <input class="form-control" type="text" id="ville" [(ngModel)]="job.ville" name="ville" required />
+  </div>
+
+  <!-- Type de contrat -->
+  <div class="m-3">
+    <label for="contrat" class="form-label">Type de contrat</label>
+    <select class="form-control" id="contrat" [(ngModel)]="job.contrat" name="contrat" required>
+      <option *ngFor="let c of typeContrats" [value]="c">{{ c }}</option>
+    </select>
+  </div>
+
+  <!-- Salaire -->
+  <div class="m-3">
+    <label for="salaire" class="form-label">Salaire mensuel désiré</label>
+    <input class="form-control" type="number" id="salaire" [(ngModel)]="job.salaire" name="salaire" required />
+  </div>
+
+  <!-- Bouton -->
+  <div class="text-center m-3">
+    <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+  </div>
+</form>
+
 </app-popup>
 
 <app-popup
@@ -358,7 +370,7 @@
   [title]="'Modifier les informations personnelles'"
   (close)="closePopup()"
 >
-  <form (submit)="CompleteProfil(); $event.preventDefault();">
+  <form (submit)="CompleteProfil(); $event.preventDefault();" method="post">
     <!-- Photo de profil -->
     <div class="mb-3 text-center">
   <label for="photo" class="form-label d-block">Photo de profil</label>
@@ -460,6 +472,18 @@
         id="telephone"
         name="telephone"
         [(ngModel)]="userProfil.telephone"
+      />
+    </div>
+
+     <!-- Téléphone -->
+    <div class="mb-3">
+      <label for="mail" class="form-label">Adresse Mail</label>
+      <input
+        class="form-control"
+        type="email"
+        id="mail"
+        name="mail"
+        [(ngModel)]="userProfil.email"
       />
     </div>
 

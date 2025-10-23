@@ -1,6 +1,7 @@
 import { Component, Output,EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserProfile } from '../../models/candidat.model';
 
 @Component({
   selector: 'app-profil',
@@ -13,6 +14,7 @@ export class ProfilComponent {
   @Input() description: string = '';
   @Input() isComplete: boolean = false;
   @Input() buttonLabel: string = 'Modifier';
+  @Input() userProfile!: UserProfile;
 
    @Output() buttonClicked = new EventEmitter<void>();
 

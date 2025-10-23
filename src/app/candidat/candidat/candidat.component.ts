@@ -5,6 +5,8 @@ import { PopupComponent } from '../popup/popup.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CandidatService } from '../../services/candidat.service';
+import { UserProfile } from '../../models/candidat.model';
+import { TypeJob,TypeContrat } from '../../models/typejob.model';
 
 @Component({
   selector: 'app-candidat',
@@ -17,6 +19,7 @@ export class CandidatComponent {
   skills: string[] = [];
   skillInput: string = '';
   selectedPhoto: File | null = null;
+  isComplete:boolean=false;
 
   experiences: { poste: string; entreprise: string;ville:string;type_contrat:string }[] = [];
   newExperience = { poste: '', entreprise: '',ville:'',type_contrat:'' };
@@ -31,11 +34,23 @@ export class CandidatComponent {
   nouveauFichier?: File;
 
   // Profil utilisateur
-  userProfil :any= {};
+  userProfil!: UserProfile;
+
+  job:any={};
+
+  typeContrats = Object.values(TypeContrat);
+
 
   constructor(private candidatService: CandidatService) {}
 
-
+  
+   ngOnInit(): void {
+  this.loadCurrentCandidat();
+  this.candidatService.getCurrentCandidat().subscribe({
+      next: data => this.userProfil = data,
+      error: err => console.error('Erreur chargement profil', err)
+    });
+}
 
   openPopup(PopupType:string){
     this.currentPopup=PopupType
@@ -125,10 +140,17 @@ export class CandidatComponent {
     formData.append('prenom', this.userProfil.prenom || '');
     formData.append('genre', this.userProfil.genre || '');
     if (this.userProfil.telephone) {
-  // Supprimer tout ce qui n'est pas chiffre
-  const telNumber = this.userProfil.telephone.replace(/\D/g, '');
-  formData.append('telephone', telNumber);
-}
+      // Supprimer tout ce qui n'est pas chiffre
+      const telNumber = this.userProfil.telephone.replace(/\D/g, '');
+      formData.append('telephone', telNumber);
+    }
+    if (this.userProfil.photoUrl) {
+  
+      formData.append('telephone', this.userProfil.photoUrl || '');
+    }
+
+    formData.append('email', this.userProfil.email || '');
+
     formData.append('adresse', this.userProfil.adresse || '');
    if (this.userProfil.dateNaissance) {
   const date = new Date(this.userProfil.dateNaissance);
@@ -146,6 +168,7 @@ export class CandidatComponent {
       next: (response) => {
         console.log('Profil complet', response);
         alert('Profil complete avec succès !');
+        this.isComplete = true;
         this.closePopup();
       },
       error: (err) => {
@@ -153,7 +176,55 @@ export class CandidatComponent {
         alert('Erreur : ' + err.error?.message || err.message);
       }
     });
+
+
+    
   }
+
+
+   AjouterTravail() {
+    const formData = new FormData();
+    formData.append('intitule', this.job.intitule || '');
+    formData.append('salaire', this.job.salaire ? this.job.salaire.toString() : '0');
+    // Vérification de contrat avant toUpperCase
+  const contratValue = this.job.contrat || '';
+  formData.append('contrat', contratValue);
+    formData.append('ville', this.job.ville || '');
+
+
+    this.candidatService.AjouterTravail(formData).subscribe({
+      next: (response) => {
+        console.log('Profil complet', response);
+        alert('Type de job cree avec succès !');
+        this.isComplete = true;
+        this.closePopup();
+      },
+      error: (err) => {
+        console.error('Erreur ajout type de job', err);
+        alert('Erreur : ' + err.error?.message || err.message);
+      }
+    });
+
+
+    
+  }
+
+
+
+ 
+loadCurrentCandidat(): void {
+  this.candidatService.getCurrentCandidat().subscribe({
+    next: (data) => {
+      this.userProfil = data;
+      console.log('Profil candidat chargé :', data);
+    },
+    error: (err) => {
+      console.error('Erreur lors du chargement du profil candidat', err);
+    },
+  });
+}
+
+
 
   
 }

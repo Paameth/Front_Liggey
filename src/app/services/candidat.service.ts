@@ -11,6 +11,8 @@ export class CandidatService {
   private authUrl='http://localhost:8080/api/authenticate';
   private UrlLogin='http://localhost:8080/api/candidats/is-candidat';
   private completerUrl='http://localhost:8080/api/candidats/complete-profile'
+  private getCandidatUrl='http://localhost:8080/api/candidats/candidat';
+  private ajoutTravailUrl='http://localhost:8080/api/candidats/ajouter-travail-recherche';
   constructor(private http:HttpClient) { }
 
   register(data: any): Observable<any> {
@@ -44,6 +46,26 @@ CompleterProfil(data: FormData): Observable<any> {
   
     return this.http.post(this.completerUrl, data, {headers});
   }
+
+
+   getCurrentCandidat(): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = token ?new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }) : undefined;
+
+  return this.http.get(this.getCandidatUrl, { headers });
+}
+
+   AjouterTravail(formData: FormData): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = token ? new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }) : undefined;
+
+  return this.http.post(this.ajoutTravailUrl, formData, { headers });
+}
+
 
 
 }
