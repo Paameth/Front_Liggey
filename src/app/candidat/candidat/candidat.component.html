@@ -55,7 +55,7 @@
   [title]="'Ajouter une ressource'"
   (close)="closePopup()"
 >
-  <form (submit)="addRessource(); $event.preventDefault();">
+  <form (submit)="addRessource(); $event.preventDefault();" method="post">
     <!-- Champ lien -->
     <div class="m-3">
       <label for="lien" class="form-label">Lien (URL)</label>
@@ -358,7 +358,7 @@
   [title]="'Modifier les informations personnelles'"
   (close)="closePopup()"
 >
-  <form (submit)="updateProfil(); $event.preventDefault();">
+  <form (submit)="CompleteProfil(); $event.preventDefault();">
     <!-- Photo de profil -->
     <div class="mb-3 text-center">
   <label for="photo" class="form-label d-block">Photo de profil</label>
