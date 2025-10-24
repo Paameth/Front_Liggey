@@ -11,6 +11,7 @@ export class RecruteurService {
   private authUrl='http://localhost:8080/api/authenticate';
   private UrlLogin='http://localhost:8080/api/recruteurs/is-recruteur';
    private getRecruteurUrl='http://localhost:8080/api/recruteurs/recruteur';
+   private completerUrl='http://localhost:8080/api/recruteurs/complete-profile'
   constructor(private http:HttpClient) { }
 
   register(data: any): Observable<any> {
@@ -43,5 +44,16 @@ isRecruteur(): Observable<boolean> {
 
   return this.http.get(this.getRecruteurUrl, { headers });
 }
+
+CompleterProfil(data: FormData): Observable<any> {
+
+    // Récupérer le token JWT depuis localStorage
+    const token = localStorage.getItem('auth_token');
+
+    const headers = token ? new HttpHeaders({ 'Authorization': `Bearer ${token}` }) : undefined;
+
+  
+    return this.http.post(this.completerUrl, data, {headers});
+  }
 
 }

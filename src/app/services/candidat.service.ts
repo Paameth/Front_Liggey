@@ -37,6 +37,15 @@ isCandidat(): Observable<boolean> {
   });
 }
 
+
+ getCurrentCandidat(): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = token ?new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }) : undefined;
+
+  return this.http.get(this.getCandidatUrl, { headers });
+}
 CompleterProfil(data: FormData): Observable<any> {
 
     // Récupérer le token JWT depuis localStorage
@@ -49,14 +58,7 @@ CompleterProfil(data: FormData): Observable<any> {
   }
 
 
-   getCurrentCandidat(): Observable<any> {
-  const token = localStorage.getItem('auth_token');
-  const headers = token ?new HttpHeaders({
-    Authorization: `Bearer ${token}`,
-  }) : undefined;
-
-  return this.http.get(this.getCandidatUrl, { headers });
-}
+  
 
    AjouterTravail(formData: FormData): Observable<any> {
   const token = localStorage.getItem('auth_token');

@@ -6,7 +6,8 @@
         [userProfile]="userProfil"
         [isComplete]="isComplete"
         [buttonLabel]="'Modifier'"
-        (buttonClicked)="openPopup('profil')">
+        (buttonClicked)="openPopup('profil')"
+        >
       </app-profil>
 
       <app-card
@@ -51,63 +52,64 @@
         >
       </app-card>
 
-      <app-popup
-  *ngIf="currentPopup === 'autres'"
-  [title]="'Ajouter une ressource'"
-  (close)="closePopup()"
->
-  <form (submit)="addRessource(); $event.preventDefault();" method="post">
-    <!-- Champ lien -->
-    <div class="m-3">
-      <label for="lien" class="form-label">Lien (URL)</label>
-      <input
-        class="form-control"
-        type="url"
-        id="lien"
-        name="lien"
-        [(ngModel)]="nouveauLien"
-      />
-    </div>
-
-    <!-- Champ fichier -->
-    <div class="m-3">
-      <label for="fichierInput" class="form-label">Fichier</label>
-      <input
-        class="form-control"
-        type="file"
-        id="fichierInput"
-        name="fichierInput"
-        (change)="handleFileChange($event)"
-      />
-    </div>
-    <div class="m-3">
-      <button type="submit" class="btn btn-primary w-100 ajouter">Ajouter</button>
-    </div>
-    
-  </form>
-
-  <!-- Liste des ressources -->
-  <div *ngIf="ressources.length > 0" class="mt-4">
-    <h6>Ressources ajoutées :</h6>
-    <ul class="list-group">
-      <li
-        *ngFor="let res of ressources; let i = index"
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
-        <div class="d-flex flex-column">
-          <span *ngIf="res.lien">🔗 <a [href]="res.lien" target="_blank">{{ res.lien }}</a></span>
-          <span *ngIf="res.fichier">📎 {{ res.fichier.name }}</span>
-        </div>
-        <button class="btn btn-sm btn-danger" (click)="removeRessource(i)">Supprimer</button>
-      </li>
-    </ul>
-  </div>
-</app-popup>
+      
 
     </div>
   </div>
 </div>
 
+<app-popup
+        *ngIf="currentPopup === 'autres'"
+        [title]="'Ajouter une ressource'"
+        (close)="closePopup()"
+        >
+        <form (submit)="addRessource(); $event.preventDefault();" method="post">
+          <!-- Champ lien -->
+          <div class="m-3">
+            <label for="lien" class="form-label">Lien (URL)</label>
+            <input
+              class="form-control"
+              type="url"
+              id="lien"
+              name="lien"
+              [(ngModel)]="nouveauLien"
+            />
+          </div>
+
+          <!-- Champ fichier -->
+          <div class="m-3">
+            <label for="fichierInput" class="form-label">Fichier</label>
+            <input
+              class="form-control"
+              type="file"
+              id="fichierInput"
+              name="fichierInput"
+              (change)="handleFileChange($event)"
+            />
+          </div>
+          <div class="m-3">
+            <button type="submit" class="btn btn-primary w-100 ajouter">Ajouter</button>
+          </div>
+          
+        </form>
+
+        <!-- Liste des ressources -->
+        <div *ngIf="ressources.length > 0" class="mt-4">
+          <h6>Ressources ajoutées :</h6>
+          <ul class="list-group">
+            <li
+              *ngFor="let res of ressources; let i = index"
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex flex-column">
+                <span *ngIf="res.lien">🔗 <a [href]="res.lien" target="_blank">{{ res.lien }}</a></span>
+                <span *ngIf="res.fichier">📎 {{ res.fichier.name }}</span>
+              </div>
+              <button class="btn btn-sm btn-danger" (click)="removeRessource(i)">Supprimer</button>
+            </li>
+          </ul>
+        </div>
+      </app-popup>
 
 <app-popup
   *ngIf="currentPopup === 'job_searched'"

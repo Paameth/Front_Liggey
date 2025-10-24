@@ -1,0 +1,47 @@
+<div class="card mb-3 p-3 w-100 w-sm-75 w-md-50 w-lg-40 large">
+  <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+    
+    
+    <button class="btn btn-primary order-0 order-md-1 boutonLabel" (click)="onClick()">
+      {{ buttonLabel }}
+    </button>
+
+    
+    <div class="d-flex align-items-center gap-2 order-1 order-md-0">
+        <i class="bi bi-person-circle fs-1"></i>
+      <h5 class="card-title mb-0 fw-bold">{{entreprise?.nom_entreprise}} </h5>
+      <span 
+        class="badge"
+        [ngClass]="{
+          'bg-light text-danger border border-danger': !isComplete,
+          'bg-light text-success border border-success': isComplete
+        }">
+        {{ isComplete ? 'complet' : 'pas complet' }}
+      </span>
+    </div>
+</div>
+
+ 
+ 
+<ul class="infos list-unstyled d-flex flex-column flex-md-row flex-wrap gap-2 px-3 mb-3">
+  <li class="d-flex align-items-center gap-2">
+    <i class="bi bi-envelope-at"></i>
+    <span class="text-break">{{entreprise?.email}}</span>
+  </li>
+  <li class="d-flex align-items-center gap-2">
+    <i class="bi bi-whatsapp"></i>
+    <span class="text-break">{{entreprise?.telephone}}</span>
+  </li>
+  <li class="d-flex align-items-center gap-2">
+    <img src="icons/cake.svg" alt="" width="20">
+    <span class="text-break">{{entreprise?.secteur_entreprise }}</span>
+  </li>
+  <li class="d-flex align-items-center gap-2">
+    <i class="bi bi-geo-alt-fill"></i>
+    <span class="text-break">{{entreprise?.adresse}}</span>
+  </li>
+</ul>
+
+
+</div>
+
