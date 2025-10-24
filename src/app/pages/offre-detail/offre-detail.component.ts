@@ -22,7 +22,7 @@ export class OffreDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.offreService.getOffreById(+id).subscribe(data => this.offre = data);
+      this.offreService.getOffreByIdall(+id).subscribe(data => this.offre = data);
     }
   }
   postuler(offreId: number): void {

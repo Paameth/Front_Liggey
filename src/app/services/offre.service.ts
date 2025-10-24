@@ -34,10 +34,16 @@ export class OffreService {
       return this.http.get<OffreModel[]>(this.allOffresUrl);
     }
 
-    getOffreById(id: number): Observable<OffreModel> {
+    getOffreByIdall(id: number): Observable<OffreModel> {
   return this.http.get<OffreModel>(`http://localhost:8080/api/offres/${id}`);
 }
+  //  Méthode pour récupérer une offre par ID
+  getOffreById(id: number): Observable<any> {
+    const token=localStorage.getItem('auth_token');
+    const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
 
+    return this.http.get<any>(`${this.apiUrl}/${id}`,{headers});
+  }
 
     rechercherOffres(localisation?: string, poste?: string, typeContrat?: string): Observable<any> {
   let params = new HttpParams();
@@ -79,13 +85,7 @@ ajouterOffre(offre: any): Observable<any> {
     return this.http.get<any[]>(this.apiUrl , {headers});
   }
 
-  //  Méthode pour récupérer une offre par ID
-  getOffreById(id: number): Observable<any> {
-    const token=localStorage.getItem('auth_token');
-    const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
 
-    return this.http.get<any>(`${this.apiUrl}/${id}`,{headers});
-  }
 
 
   //  Modification d'une offre
