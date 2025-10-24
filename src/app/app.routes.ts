@@ -12,6 +12,7 @@ import { RechercheComponent } from './acceuil/recherche/recherche.component';
 import { PagecandidatComponent } from './candidat/pagecandidat/pagecandidat.component';
 import { PagerecruteurComponent } from './recruteur/pagerecruteur/pagerecruteur.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { OffreDetailComponent } from './pages/offre-detail/offre-detail.component';
 
 
 export const routes: Routes = [
@@ -28,6 +29,7 @@ export const routes: Routes = [
     { path: 'recherche', component:RechercheComponent },
     { path: 'pagecandidat', component: PagecandidatComponent },
     { path: 'recruteur', component: PagerecruteurComponent },
+    { path: 'offre/:id', component: OffreDetailComponent },
     {
   path: 'search-result',
   loadComponent: () => import('./search-result/search-result.component').then(m => m.SearchResultComponent)
