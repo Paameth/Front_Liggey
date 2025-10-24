@@ -13,6 +13,7 @@ import { OffreencoursComponent } from '../offreencours/offreencours.component';
   imports: [HeaderComponent, FooterComponent, ProfilRecruteurComponent, CommonModule,OffreComponent,OffreencoursComponent],
   templateUrl: './pagerecruteur.component.html',
   styleUrls: ['./pagerecruteur.component.css']
+  styleUrls: ['./pagerecruteur.component.css']
 })
 export class PagerecruteurComponent implements OnInit {
   recruteur: any = {

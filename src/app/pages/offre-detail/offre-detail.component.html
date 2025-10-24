@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div class="offre-detail-container" *ngIf="offre">
+  <div class="header">
+    <img src="images/dev.jpg" alt="photo_job" class="job-image">
+    <div class="header-info">
+      <h2>{{offre.poste}}</h2>
+      <h4>{{offre.intitule}}</h4>
+      <p class="localisation-type">
+        <span class="type-contrat">{{offre.typeContrat}}</span> |
+        <span class="localisation">{{offre.localisation}}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="description-section">
+    <h3>Description du poste</h3>
+    <p>{{offre.description}}</p>
+  </div>
+
+  <div class="details-section">
+    <h3>Détails</h3>
+    <ul>
+      <li><strong>Nombre de postes :</strong> {{offre.nombrePostes}}</li>
+      <li><strong>Recruteur :</strong> {{offre.intitule}}</li>
+      <li><strong>Type de contrat :</strong> {{offre.typeContrat}}</li>
+      <li><strong>Localisation :</strong> {{offre.localisation}}</li>
+    </ul>
+  </div>
+
+  <div class="actions">
+    <button class="postuler-btn" (click)="postuler(offre.id)">Postuler</button>
+  </div>
+</div>
+<div class="col-12 col-md-12"><app-footer></app-footer></div>

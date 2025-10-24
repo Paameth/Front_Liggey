@@ -19,6 +19,8 @@ export interface Recruteur {
 })
 
 
+
+
 export class RecruteurService {
 
   private baseUrl = 'http://localhost:8080/api/register-recruteur';
