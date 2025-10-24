@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+    <!-- Colonne contenant les cartes -->
+    <div class="col-12 col-md-12 profil">  
+      <app-profil-recruteur
+        [entreprise]="entreprise"
+        [isComplete]="isComplete"
+        [buttonLabel]="'Modifier'"
+        (buttonClicked)="openPopup()"
+        >
+      </app-profil-recruteur>
+
+    </div>
+  </div>
+</div>
+
+
+<app-popup
+*ngIf="isPopupOpen"
+  [title]="'Modifier les informations personnelles'"
+  (close)="closePopup()"
+  
+  
+>
+<p>Le popup devrait s’afficher !</p>
+  <form (submit)="CompleteProfil(); $event.preventDefault();" method="post">
+    <!-- Photo de profil -->
+    <div class="mb-3 text-center">
+  <label for="photo" class="form-label d-block">Photo de profil</label>
+
+  <!-- Icône nuage cliquable -->
+  <label for="photo" class="upload-icon btn btn-outline-secondary w-100  p-3">
+    <h5>Ajouter une photo de profil</h5>
+    <i class="bi bi-cloud-upload fs-1"></i>
+  </label>
+
+  <!-- Input caché -->
+  <input
+    type="file"
+    id="photo"
+    name="photo"
+    (change)="handlePhotoChange($event)"
+    accept="image/*"
+    class="d-none"
+  />
+
+  <!-- Aperçu image -->
+  <div *ngIf="entreprise.photoUrl" class="mt-3">
+    <img
+      [src]="entreprise.photoUrl"
+      alt="Photo de profil"
+      class="rounded-circle"
+      width="100"
+      height="50"
+    />
+  </div>
+</div>
+
+
+    <!-- Nom et Prénom côte à côte -->
+ 
+
+      
+    
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <label for="nom_entreprise" class="form-label">Nom Entreprise</label>
+        <input
+          class="form-control"
+          type="text"
+          id="nom_entreprise"
+          name="nom_entreprise"
+          [(ngModel)]="entreprise.nom_entreprise"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="secteur_entreprise" class="form-label">Secteur</label>
+        <input
+          class="form-control"
+          type="text"
+          id="secteur_entreprise"
+          name="secteur_entreprise"
+          [(ngModel)]="entreprise.secteur_entreprise"
+        />
+      </div>
+    
+    
+
+      <!-- Téléphone -->
+      <div class="mb-3">
+        <label for="telephone" class="form-label">Téléphone</label>
+        <input
+          class="form-control"
+          type="text"
+          id="telephone"
+          name="telephone"
+          [(ngModel)]="entreprise.telephone"
+        />
+      </div>
+
+      <!-- Adresse -->
+      <div class="mb-3">
+        <label for="mail" class="form-label">Adresse Mail</label>
+        <input
+          class="form-control"
+          type="email"
+          id="mail"
+          name="mail"
+          [(ngModel)]="entreprise.email"
+        />
+      </div>
+
+      <!-- Adresse -->
+      <div class="mb-3">
+        <label for="adresse" class="form-label">Adresse</label>
+        <input
+          class="form-control"
+          type="text"
+          id="adresse"
+          name="adresse"
+          [(ngModel)]="entreprise.adresse"
+        />
+      </div>
+      </div>
+   
+      <!-- Bouton centré -->
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary enregistrer w-100">Enregistrer</button>
+      </div>
+    
+  </form>
+</app-popup>
+
+
+
+
+<!-- Et ainsi de suite pour les autres -->
+
+

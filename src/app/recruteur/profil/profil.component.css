@@ -1,0 +1,20 @@
+.badge {
+    background-color: #f8a29e;
+    color: black;
+}
+
+.boutonLabel{
+    width: 100px;
+    font-weight: bold;
+}
+
+.card{
+    border-radius:0px !important;
+}
+
+.infos{
+ 
+    justify-content: space-between;
+}
+
+

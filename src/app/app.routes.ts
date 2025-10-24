@@ -27,6 +27,7 @@ export const routes: Routes = [
     { path: 'candidat', component: CandidatComponent },
     { path: 'recherche', component:RechercheComponent },
     { path: 'pagecandidat', component: PagecandidatComponent },
+    { path: 'pagerecruteur', component: PagerecruteurComponent },
     { path: 'recruteur', component: PagerecruteurComponent },
     {
   path: 'search-result',

@@ -8,7 +8,7 @@
     
     <div class="d-flex align-items-center gap-2 order-1 order-md-0">
       <i class="bi bi-person-workspace fs-1"></i>
-      <h5 class="card-title mb-0 fw-bold">Profil recruteur</h5>
+      <h5 class="card-title mb-0 fw-bold">{{recruteur?.firstname}} {{recruteur?.lastname}}</h5>
     </div>
 
     <span 
@@ -24,18 +24,18 @@
   <ul class="infos list-unstyled d-flex flex-column gap-2 px-3 mb-3">
     <li class="d-flex align-items-center gap-2">
       <i class="bi bi-building"></i>
-      <span>{{ recruteur.nom_entreprise || 'Nom d’entreprise non défini' }}</span>
+      <span>{{ recruteur?.nom_entreprise || 'Nom d’entreprise non défini' }}</span>
     </li>
 
     <li class="d-flex align-items-center gap-2">
       <i class="bi bi-briefcase"></i>
-      <span>{{ recruteur.secteur_entreprise || 'Secteur non défini' }}</span>
+      <span>{{ recruteur?.secteur_entreprise || 'Secteur non défini' }}</span>
     </li>
 
     <li class="d-flex align-items-center gap-2">
       <i class="bi bi-envelope-at"></i>
-      <span [ngClass]="{'text-muted fst-italic': !recruteur.user.email}">
-        {{ recruteur.user.email || 'Ajouter une adresse mail' }}
+      <span [ngClass]="{'text-muted fst-italic': !recruteur?.email}">
+        {{ recruteur?.email || 'Ajouter une adresse mail' }}
       </span>
     </li>
   </ul>
@@ -52,6 +52,7 @@
   (close)="closeModal()"
   (save)="saveChanges($event)">
 </app-profil-recruteur>
+
 
 </div>
 <div class="row">

@@ -58,7 +58,7 @@ export class LoginRecruteurComponent {
           next: (isRecruteur: boolean) => {
             if (isRecruteur) {
               // ✅ Redirection si c’est un recruteur
-              this.router.navigate(['/recruteur']);
+              this.router.navigate(['/pagerecruteur']);
             } else {
               alert("Vous n'avez pas accès à cet espace.");
             }
