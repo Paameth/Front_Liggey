@@ -35,12 +35,47 @@ export class OffreService {
   // offre.service.ts
 ajouterOffre(offre: any): Observable<any> {
 
+
   const token=localStorage.getItem('auth_token');
   const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
+  console.log("Objet envoyé :", offre);
 
-
-  return this.http.post('http://localhost:8080/api/offres', offre);
-}
-    
+  return this.http.post('http://localhost:8080/api/offres', offre,{headers});
 }
 
+
+    //  Méthode pour récupérer toutes les offres
+  getOffres(): Observable<any[]> {
+
+    const token=localStorage.getItem('auth_token');
+    const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
+
+    return this.http.get<any[]>(this.apiUrl , {headers});
+  }
+
+  //  Méthode pour récupérer une offre par ID
+  getOffreById(id: number): Observable<any> {
+    const token=localStorage.getItem('auth_token');
+    const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
+
+    return this.http.get<any>(`${this.apiUrl}/${id}`,{headers});
+  }
+
+
+  //  Modification d'une offre
+  modifierOffre(id: number, offreData: any): Observable<any> {
+    const token=localStorage.getItem('auth_token');
+    const headers=token ? new HttpHeaders({'Authorization':`Bearer ${token}`}):undefined;
+
+
+  return this.http.put(`${this.apiUrl}/${id}`, offreData ,{headers});
+}
+getRecruteur(): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = token ? new HttpHeaders({ 'Authorization': `Bearer ${token}` }) : undefined;
+  return this.http.get<any>(`${this.baseUrl}/me`, { headers });
+}
+
+
+
+}

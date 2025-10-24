@@ -1,0 +1,35 @@
+
+
+<!-- Popup de modification -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content">
+    <h5 class="mb-3 text-center fw-bold">Modifier le profil recruteur</h5>
+    <form (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label>Nom de l’entreprise</label>
+        <input [(ngModel)]="recruteur.nom_entreprise" name="nom_entreprise" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label>Secteur</label>
+        <input [(ngModel)]="recruteur.secteur_entreprise" name="secteur_entreprise" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label>Prénom</label>
+        <input [(ngModel)]="recruteur.user.first_name" name="first_name" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label>Nom</label>
+        <input [(ngModel)]="recruteur.user.last_name" name="last_name" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label>Email</label>
+        <input [(ngModel)]="recruteur.user.email" name="email" class="form-control" placeholder="ex: entreprise@mail.com">
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>

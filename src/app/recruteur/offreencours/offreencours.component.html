@@ -1,44 +1,65 @@
-<div><h3>Offre en cours</h3></div>
-<app-card
-    [title]="'Nom offre'"
-    [description]="'Liste de vos offres disponible'"
-    [buttonLabel]="'Modifier'"
-    (buttonClicked)="openPopup('ModifierOffre')">
-</app-card>
+<div><h3>Offres en cours</h3></div>
 
-    <app-popup
-    *ngIf="currentPopup === 'ModifierOffre'"
-    [title]="'Modifier Offre'"
-    (close)="closePopup()"
-    >
- 
-  <form>
-    <!-- Formulaire type de job -->
+<div class="offres-container row">
+  <div class="col-md-4 mb-4" *ngFor="let offre of offres">
+    <app-card
+      [title]="offre.intitule"
+      [description]="
+        'Poste : ' + offre.poste + '\n' +
+        'Type de contrat : ' + offre.typeContrat + '\n' +
+        'Localisation : ' + offre.localisation + '\n' +
+        'Rémunération : ' + (offre.remuneration ? offre.remuneration + ' FCFA' : 'Non précisé') + '\n' +
+        'Date de publication : ' + (offre.datePublication | date: 'dd/MM/yyyy')
+      "
+      [buttonLabel]="'Modifier'"
+      (buttonClicked)="openPopup('ModifierOffre', offre)">
+    </app-card>
+  </div>
+</div>
+
+<!-- Si aucune offre -->
+<div *ngIf="offres.length === 0" class="text-center mt-4">
+  <p>Aucune offre en cours pour le moment.</p>
+</div>
+
+<!-- ✅ Popup de modification -->
+<app-popup
+  *ngIf="currentPopup === 'ModifierOffre'"
+  [title]="'Modifier l’offre'"
+  (close)="closePopup()">
+
+  <form (ngSubmit)="enregistrerModification()">
     <div class="m-3">
-      <label for="intitule" class="form-label">Intitule du poste</label>
-      <input class="form-control" type="text" name="intitule" id="intitule" />
+      <label for="intitule" class="form-label">Intitulé du poste</label>
+      <input class="form-control" type="text" id="intitule" [(ngModel)]="offreEnEdition.intitule" name="intitule" />
     </div>
+
     <div class="m-3">
-      <label for="lieudetravail" class="form-label">Lieu de Travail</label>
-      <input class="form-control" type="text" name="lieudetravail" id="lieudetravail" />
+      <label for="poste" class="form-label">Poste</label>
+      <input class="form-control" type="text" id="poste" [(ngModel)]="offreEnEdition.poste" name="poste" />
     </div>
+
     <div class="m-3">
-      <label for="contrat" class="form-label">Type de contrat</label>
-      <input class="form-control" type="text" name="contrat" id="contrat" />
+      <label for="typeContrat" class="form-label">Type de contrat</label>
+      <select class="form-control" id="typeContrat" [(ngModel)]="offreEnEdition.typeContrat" name="typeContrat">
+        <option value="CDI">CDI</option>
+        <option value="CDD">CDD</option>
+        <option value="Stage">Stage</option>
+      </select>
     </div>
+
     <div class="m-3">
-      <label for="salaire" class="form-label">Salaire mensuel desire</label>
-      <input class="form-control" type="text" name="salaire" id="salaire" />
+      <label for="localisation" class="form-label">Localisation</label>
+      <input class="form-control" type="text" id="localisation" [(ngModel)]="offreEnEdition.localisation" name="localisation" />
     </div>
+
     <div class="m-3">
-      <input class="form-control" type="file" name="fichier" id="fichier" />
+      <label for="remuneration" class="form-label">Rémunération (FCFA)</label>
+      <input class="form-control" type="number" id="remuneration" [(ngModel)]="offreEnEdition.remuneration" name="remuneration" />
     </div>
+
     <div class="text-center m-3">
-      <button type="submit" class="btn btn-primary w-100 enregistrer">Enregistrer</button>
+      <button type="submit" class="btn btn-primary w-100 enregistrer">💾 Enregistrer</button>
     </div>
   </form>
 </app-popup>
-      
-
- 
- 

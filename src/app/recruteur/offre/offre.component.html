@@ -12,31 +12,61 @@
     (close)="closePopup()"
     >
  
-  <form (ngSubmit)="onSubmit()">
-    <!-- Formulaire type de job -->
-    <div class="m-3">
-      <label for="intitule" class="form-label">Intitule du poste</label>
-      <input class="form-control" type="text" name="intitule" id="intitule" />
-    </div>
-    <div class="m-3">
-      <label for="lieudetravail" class="form-label">Lieu de Travail</label>
-      <input class="form-control" type="text" name="lieudetravail" id="lieudetravail" />
-    </div>
-    <div class="m-3">
-      <label for="contrat" class="form-label">Type de contrat</label>
-      <input class="form-control" type="text" name="contrat" id="contrat" />
-    </div>
-    <div class="m-3">
-      <label for="salaire" class="form-label">Salaire mensuel desire</label>
-      <input class="form-control" type="text" name="salaire" id="salaire" />
-    </div>
-    <div class="m-3">
-      <input class="form-control" type="file" name="fichier" id="fichier" />
-    </div>
-    <div class="text-center m-3">
-      <button type="submit" class="btn btn-primary w-100 enregistrer">Enregistrer</button>
-    </div>
-  </form>
+  <form (ngSubmit)="onSubmit()" #offreForm="ngForm">
+  <!-- Intitulé du poste -->
+  <div class="m-3">
+    <label for="intitule" class="form-label">Intitulé du poste</label>
+    <input class="form-control" type="text" name="intitule" id="intitule" [(ngModel)]="intitule" required />
+  </div>
+
+  <!-- Description -->
+  <div class="m-3">
+    <label for="description" class="form-label">Description du poste</label>
+    <textarea class="form-control" name="description" id="description" [(ngModel)]="description" required></textarea>
+  </div>
+
+  <!-- Type de contrat -->
+  <div class="m-3">
+    <label for="typeContrat" class="form-label">Type de contrat</label>
+    <select class="form-control" name="typeContrat" id="typeContrat" [(ngModel)]="typeContrat" required>
+      <option value="CDI">CDI</option>
+      <option value="CDD">CDD</option>
+      <option value="Stage">Stage</option>
+      <!-- ajoute d'autres options selon ton enum -->
+    </select>
+  </div>
+
+  <!-- Poste -->
+  <div class="m-3">
+    <label for="poste" class="form-label">Poste</label>
+    <input class="form-control" type="text" name="poste" id="poste" [(ngModel)]="poste" required />
+  </div>
+
+  <!-- Localisation -->
+  <div class="m-3">
+    <label for="localisation" class="form-label">Localisation</label>
+    <input class="form-control" type="text" name="localisation" id="localisation" [(ngModel)]="localisation" required />
+  </div>
+
+  <!-- Rémunération -->
+  <div class="m-3">
+    <label for="remuneration" class="form-label">Rémunération</label>
+    <input class="form-control" type="number" name="remuneration" id="remuneration" [(ngModel)]="remuneration" required />
+  </div>
+
+  <!-- Photo -->
+  <div class="m-3">
+    <input class="form-control" type="file" name="photo" id="photo" (change)="onFileSelected($event)" />
+  </div>
+
+  <div class="text-center m-3">
+    <button type="submit" class="btn btn-primary w-100 enregistrer">Enregistrer</button>
+  </div>
+</form>
+
+
+
+
 </app-popup>
       
 

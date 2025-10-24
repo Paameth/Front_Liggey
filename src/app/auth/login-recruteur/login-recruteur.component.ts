@@ -6,6 +6,9 @@ import { FooterComponent } from "../../footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { RecruteurService } from '../../services/recruteur.service';
 import { Router } from '@angular/router';
+import { OffreComponent } from '../../recruteur/offre/offre.component';
+import { OffreService } from '../../services/offre.service';
+
 
 
 @Component({
@@ -45,7 +48,11 @@ export class LoginRecruteurComponent {
       if (token) {
         // 1. Stocker le token dans le localStorage
         localStorage.setItem('auth_token', token);
-
+        this.recruteurService.getRecruteur().subscribe({
+  next: (recruteur: any) => {
+    localStorage.setItem('recruteur_id', recruteur.id.toString());
+  }
+});
         // 2. Vérifier s'il est recruteur
         this.recruteurService.isRecruteur().subscribe({
           next: (isRecruteur: boolean) => {
